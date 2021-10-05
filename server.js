@@ -3,7 +3,8 @@ const mongoose = require('mongoose')
 const ShortUrl = require('./models/shortUrl')
 const app = express()
 
-mongoose.connect('mongodb://localhost/urlShortener', {
+
+mongoose.connect('mongodb+srv://hkdass:1234@cluster0.czpld.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {
   useNewUrlParser: true, useUnifiedTopology: true
 })
 
@@ -22,13 +23,25 @@ app.post('/shortUrls', async (req, res) => {
 })
 
 app.get('/:shortUrl', async (req, res) => {
-  const shortUrl = await ShortUrl.findOne({ short: req.params.shortUrl })
+  const sUrl = await ShortUrl.findOne({ short: req.params.shortUrl })
+  const shortUrl = `${req.headers.host}/${sUrl}`
+
   if (shortUrl == null) return res.sendStatus(404)
 
-  shortUrl.clicks++
   shortUrl.save()
 
   res.redirect(shortUrl.full)
 })
+
+app.get('/delete/:id', (req, res, next) => {
+  ShortUrl.findByIdAndRemove(req.params.id, (err, doc) => {
+      if (!err) {
+          res.redirect('/');
+      }
+      else { console.log('Error in employee delete :' + err)
+         next(err)
+     }
+  });
+});
 
 app.listen(process.env.PORT || 5000);

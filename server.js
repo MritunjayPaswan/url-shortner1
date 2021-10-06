@@ -19,7 +19,7 @@ app.get('/', async (req, res) => {
 app.post('/shortUrls', async (req, res) => {
   await ShortUrl.create({ full: req.body.fullUrl })
 
-  res.redirect('/')
+  res.redirect('/');
 })
 
 
@@ -37,7 +37,7 @@ app.get('/delete/:id', (req, res, next) => {
       if (!err) {
           res.redirect('/');
       }
-      else { console.log('Error in employee delete :' + err)
+      else { console.log('Error :' + err)
          next(err)
      }
   });

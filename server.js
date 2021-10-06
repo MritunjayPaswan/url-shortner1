@@ -22,10 +22,9 @@ app.post('/shortUrls', async (req, res) => {
   res.redirect('/')
 })
 
-app.get('/:shortUrl', async (req, res) => {
-  const sUrl = await ShortUrl.findOne({ short: req.params.shortUrl })
-  const shortUrl = `${req.headers.host}/${sUrl}`
 
+app.get('/:shortUrl', async (req, res) => {
+  const shortUrl = await ShortUrl.findOne({ short: req.params.shortUrl })
   if (shortUrl == null) return res.sendStatus(404)
 
   shortUrl.save()

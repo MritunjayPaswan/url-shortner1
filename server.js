@@ -4,7 +4,7 @@ const ShortUrl = require('./models/shortUrl')
 const app = express()
 
 
-mongoose.connect('mongodb+srv://hkdass:1234@cluster0.czpld.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {
+mongoose.connect('mongodb://localhost:27017/shorturl1', {
   useNewUrlParser: true, useUnifiedTopology: true
 })
 
@@ -43,4 +43,4 @@ app.get('/delete/:id', (req, res, next) => {
   });
 });
 
-app.listen(process.env.PORT || 5000);
+app.listen(process.env.PORT || 8080);

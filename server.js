@@ -2,9 +2,9 @@ const express = require('express')
 const mongoose = require('mongoose')
 const ShortUrl = require('./models/shortUrl')
 const app = express()
+const MONGODB_URI = 'mongodb+srv://mritunjay:root@cluster0.yrhez.mongodb.net/urlShortner?retryWrites=true&w=majority'
 
-
-mongoose.connect('mongodb://localhost:27017/shorturl1', {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/shorturl1', {
   useNewUrlParser: true, useUnifiedTopology: true
 })
 

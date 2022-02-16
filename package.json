@@ -17,16 +17,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/WebDevSimplified/url-shortener.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/WebDevSimplified/url-shortener/issues"
-  },
-  "homepage": "https://github.com/WebDevSimplified/url-shortener#readme",
-  "description": ""
+  }
+  
 }
